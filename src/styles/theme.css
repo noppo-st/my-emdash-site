@@ -11,6 +11,13 @@
 */
 
 :root {
+	/* フォント（Google Fonts を Base.astro の <link> で読み込み）。
+	   日本語フォントは巨大なので、Astro のビルド時フォント処理ではなく
+	   <link> 方式で読み込む。 */
+	--font-body: "Zen Kaku Gothic New", system-ui, sans-serif;
+	--font-heading: "Hachi Maru Pop", "Zen Kaku Gothic New", cursive;
+	--font-mono: "JetBrains Mono", ui-monospace, monospace;
+
 	/* ベース（クラフト紙とインク） */
 	--color-bg: light-dark(#f4efe3, #15140d);
 	--color-surface: light-dark(#fcf9f1, #1e1c13);
