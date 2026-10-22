@@ -37,6 +37,21 @@ const sizes = {
 	feature: "(min-width: 900px) 640px, 100vw",
 	row: "(min-width: 720px) 240px, 120px",
 }[variant];
+
+// 画像のない記事は自然物（木の実・木材）のイラストを差し絵にする。
+// 記事ごとに固定になるよう、slug から決定的に1枚を選ぶ。
+const NATURE_PLACEHOLDERS = [
+	"/nature/donguri.png",
+	"/nature/matsubokkuri.png",
+	"/nature/wood_kirikabu.png",
+	"/nature/nut_hazelnut.png",
+];
+let natureHash = 0;
+for (const ch of String(post.id)) {
+	natureHash = (natureHash * 31 + ch.charCodeAt(0)) >>> 0;
+}
+const naturePlaceholder =
+	NATURE_PLACEHOLDERS[natureHash % NATURE_PLACEHOLDERS.length];
 ---
 
 <article class:list={["post", `post--${variant}`]}>
@@ -51,7 +66,9 @@ const sizes = {
 					/>
 				</div>
 			) : (
-				<div class="post__placeholder" />
+				<div class="post__placeholder">
+					<img src={naturePlaceholder} alt="" loading="lazy" />
+				</div>
 			)
 		}
 	</a>
@@ -183,13 +200,27 @@ const sizes = {
 	.post__placeholder {
 		position: absolute;
 		inset: 0;
-		background-image: radial-gradient(
-			circle,
-			var(--color-border-strong) 1px,
-			transparent 1.5px
-		);
-		background-size: 14px 14px;
-		mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+		display: grid;
+		place-items: center;
+		background:
+			radial-gradient(
+				120% 120% at 50% 35%,
+				color-mix(in srgb, var(--color-brand) 8%, transparent),
+				transparent 62%
+			),
+			var(--color-fill);
+	}
+
+	.post__placeholder img {
+		width: 58%;
+		height: 58%;
+		object-fit: contain;
+		filter: drop-shadow(0 4px 8px rgb(60 48 20 / 0.12));
+	}
+
+	.post--feature .post__placeholder img {
+		width: 50%;
+		height: 50%;
 	}
 
 	/* Text */

@@ -1,34 +1,49 @@
 /*
-  theme.css -- your theme overrides. This is the file to edit to
-  retheme the site.
+  theme.css -- 自然工作テーマ（日曜自然工作教室）
 
-  Every design token lives in src/styles/tokens.css (colors, type
-  scale, spacing, layout, shadows) with its default value. Override any
-  of them here: declarations in this file are unlayered, so they always
-  beat the @layer base defaults in tokens.css.
+  tokens.css の既定値をここで上書きしている。宣言は unlayered なので
+  @layer base の既定より常に優先される。色は light-dark() で昼/夜を一括指定。
 
-  Colors are defined with light-dark(). Overriding with a plain color
-  changes light and dark mode at once; use light-dark(<light>, <dark>)
-  to set different values per mode.
-
-  Set the three brand tokens together, as in the example below:
-  --color-on-brand defaults to near-black in dark mode.
-
-  Webfonts are loaded in astro.config.mjs (--font-body, --font-mono).
-  Swap the loaded font there; use overrides here for system fonts or a
-  separate heading face.
-
-  Example:
-
-  :root {
-    --color-brand: light-dark(#0f766e, #2dd4bf);
-    --color-brand-hover: light-dark(#115e59, #5eead4);
-    --color-on-brand: light-dark(#ffffff, #0a0a0a);
-    --font-heading: "Iowan Old Style", Georgia, serif;
-    --radius-lg: 18px;
-    --radius-xl: 24px;
-  }
+  見出しフォントは astro.config.mjs の fonts で --font-heading に
+  「Hachi Maru Pop（はちまるポップ）」を割り当て済み。本文は
+  「Zen Kaku Gothic New」。はちまるポップは単一ウェイトなので、
+  見出しウェイトは 400 に下げてフェイクボールドを避ける。
 */
 
 :root {
+	/* ベース（クラフト紙とインク） */
+	--color-bg: light-dark(#f4efe3, #15140d);
+	--color-surface: light-dark(#fcf9f1, #1e1c13);
+	--color-fill: light-dark(#ece5d4, #27241a);
+	--color-fill-strong: light-dark(#e0d6c0, #332f21);
+	--color-text: light-dark(#2c281e, #ece6d6);
+	--color-text-secondary: light-dark(#5c5443, #b3ac98);
+	--color-muted: light-dark(#847a62, #8f866f);
+	--color-border: light-dark(#ddd3bd, #2e2a1d);
+	--color-border-subtle: light-dark(#e8e0cf, #211e15);
+	--color-border-strong: light-dark(#c9bda2, #413c2b);
+	--color-ring: light-dark(rgb(60 48 20 / 0.08), rgb(236 230 214 / 0.08));
+	--color-media-outline: light-dark(rgb(60 48 20 / 0.1), rgb(236 230 214 / 0.1));
+
+	/* ブランド色（苔・若葉の緑） */
+	--color-brand: light-dark(#5e6e45, #aec18a);
+	--color-brand-hover: light-dark(#4a5836, #c4d6a6);
+	--color-on-brand: light-dark(#fdfcf6, #15140d);
+
+	/* 見出しウェイト（はちまるポップは単一ウェイト） */
+	--font-weight-heading: 400;
+	--font-weight-display: 400;
+
+	/* 手づくりらしい柔らかな角丸（concentric を維持: xl = lg + card-padding） */
+	--radius-lg: 14px;
+	--radius-xl: 20px;
+	--card-padding: 6px;
+
+	/* 木（丸太）フレームの色。看板なので昼夜とも同じ木色 */
+	--wood-light: #d9ab6e;
+	--wood-mid: #b9833f;
+	--wood-dark: #8a5a2b;
+	--wood-panel: #f6ead0;
+	--wood-title: #5e6e45; /* 看板の上に乗る見出しは常に濃い緑 */
+	--wood-sub: #4a4433;
 }

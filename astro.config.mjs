@@ -21,10 +21,17 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.google(),
-			name: "Inter",
+			name: "Zen Kaku Gothic New",
 			cssVariable: "--font-body",
-			weights: [400, 500, 600, 700],
+			weights: [400, 500, 700],
 			fallbacks: ["sans-serif"],
+		},
+		{
+			provider: fontProviders.google(),
+			name: "Hachi Maru Pop",
+			cssVariable: "--font-heading",
+			weights: [400],
+			fallbacks: ["cursive"],
 		},
 		{
 			provider: fontProviders.google(),
